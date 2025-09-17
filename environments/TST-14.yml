@@ -1,0 +1,11 @@
+fileVersion: 1
+id: "14"
+mappingDefinitions:
+  SRC:
+    database: SNOWFLAKE_SAMPLE_DATA
+    schema: TPCH_SF1
+  TARGET:
+    database: PC_COALESCE_DB
+    schema: SL25_ENV_TST
+name: TST
+type: Environment

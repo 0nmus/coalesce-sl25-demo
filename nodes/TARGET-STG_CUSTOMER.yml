@@ -1,0 +1,205 @@
+fileVersion: 1
+id: 42f47658-0509-4233-a4c0-e426bb93ba76
+name: STG_CUSTOMER
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: This SQL node creates the STG_CUSTOMER stage table, truncates it, and then populates it with data from the HUB_CUSTOMER and SATV0_CUSTOMER tables based on the C_MKTSEGMENT and a calculated credit status.
+  isMultisource: false
+  locationName: TARGET
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0b2fad10-1a38-42a7-a948-ce548dc51f3d
+          stepCounter: 42f47658-0509-4233-a4c0-e426bb93ba76
+        config: {}
+        dataType: NUMBER(12,2)
+        description: |-
+          - This column represents the customer's account balance.
+          - It is sourced directly from the `C_ACCTBAL` column of the `SATV0_CUSTOMER` table.
+          - The data type is NUMBER(12,2), indicating a numeric value with 12 total digits and 2 decimal places.
+          - This information is used for financial reporting and customer segmentation.
+          - Account balance is a key factor in determining credit risk and customer lifetime value.
+        name: ACCTBAL
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2abe8c9f-4d49-4043-a90e-7db646edfe49
+                stepCounter: f14a02d8-a570-446e-9ae2-7598f49089dc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3689f74d-8ea2-4dcb-ad5f-e9beb99c3291
+          stepCounter: 42f47658-0509-4233-a4c0-e426bb93ba76
+        config: {}
+        dataType: VARCHAR(40)
+        description: |-
+          - This column represents the customer's address.
+          - It is sourced directly from the `C_ADDRESS` column of the `SATV0_CUSTOMER` table.
+          - The address is a VARCHAR(40) data type.
+          - This information is used for shipping, marketing campaigns, and geographic analysis.
+          - Understanding customer distribution helps in optimizing logistics and targeted advertising.
+        name: ADDRESS
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e1078027-2f3b-4f71-8a9e-f0e1d111c187
+                stepCounter: f14a02d8-a570-446e-9ae2-7598f49089dc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5774d7a2-049a-4c34-8a57-9ffafb40cafa
+          stepCounter: 42f47658-0509-4233-a4c0-e426bb93ba76
+        config: {}
+        dataType: VARCHAR(117)
+        description: |-
+          - This column contains descriptive comments about the customer.
+          - It is sourced directly from the `C_COMMENT` column of the `SATV0_CUSTOMER` table.
+          - The comments are stored as a VARCHAR(117) data type.
+          - This column could be used for sentiment analysis or to identify specific customer needs or issues.
+          - The data can be used to improve customer service and tailor marketing efforts.
+        name: COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3ab93d3e-d477-4182-bc3f-0656b0963f0c
+                stepCounter: f14a02d8-a570-446e-9ae2-7598f49089dc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 85b81b2e-a87f-41fa-8fc8-2e31e87e4ccc
+          stepCounter: 42f47658-0509-4233-a4c0-e426bb93ba76
+        config: {}
+        dataType: NUMBER(38,0)
+        description: |-
+          - This column is the unique identifier for each customer.
+          - It is sourced directly from the `C_CUSTKEY` column of the `HUB_CUSTOMER` table.
+          - The data type is NUMBER(38,0), ensuring a large range of unique customer IDs.
+          - This key is crucial for joining customer data across different tables and systems.
+          - It serves as the primary key for customer-related information and is used in various reports and analyses.
+        name: CUSTKEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 49cfc5e7-4cb1-4342-9d58-06ea5fc59d4d
+                stepCounter: 94bf37ed-3d66-4f58-bba4-b72583e11d14
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0589e2d9-3b7c-464c-b44a-6caee468997c
+          stepCounter: 42f47658-0509-4233-a4c0-e426bb93ba76
+        config: {}
+        dataType: VARCHAR(10)
+        description: |-
+          - This column indicates the market segment to which the customer belongs.
+          - It is sourced directly from the `C_MKTSEGMENT` column of the `SATV0_CUSTOMER` table.
+          - Market segments are stored as VARCHAR(10) data type.
+          - This is used for targeted marketing campaigns and sales strategies.
+          - Analyzing market segments helps in understanding customer behavior and preferences.
+        name: MKTSEGMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e5ad768d-68e8-4545-9d32-f06736e0881e
+                stepCounter: f14a02d8-a570-446e-9ae2-7598f49089dc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f181fd79-2bde-4b47-b91a-8f5b7883977d
+          stepCounter: 42f47658-0509-4233-a4c0-e426bb93ba76
+        config: {}
+        dataType: VARCHAR(25)
+        description: |-
+          - This column represents the customer's name.
+          - It is sourced directly from the `C_NAME` column of the `SATV0_CUSTOMER` table.
+          - Customer names are stored as a VARCHAR(25) data type.
+          - This information is used for personalizing customer interactions and communications.
+          - It's a key element in customer relationship management and marketing efforts.
+        name: NAME
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5f5fc8c0-8bd7-40ab-926c-1c6d49e7211c
+                stepCounter: f14a02d8-a570-446e-9ae2-7598f49089dc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ad1bf9d1-078a-472c-9cb6-8bfed84be40d
+          stepCounter: 42f47658-0509-4233-a4c0-e426bb93ba76
+        config: {}
+        dataType: VARCHAR(15)
+        description: |-
+          - This column represents the customer's phone number.
+          - It is sourced directly from the `C_PHONE` column of the `SATV0_CUSTOMER` table.
+          - Phone numbers are stored as VARCHAR(15) data type.
+          - This information is used for direct communication with customers.
+          - It's important for customer service, sales, and marketing campaigns.
+        name: PHONE
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b0d1ae5e-0839-4b1b-af8e-09b5063120d9
+                stepCounter: f14a02d8-a570-446e-9ae2-7598f49089dc
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: e781790b-9453-4f73-a8d1-e8bee4eba335
+          stepCounter: 42f47658-0509-4233-a4c0-e426bb93ba76
+        config: {}
+        dataType: VARCHAR
+        defaultValue: ""
+        description: |-
+          - This column represents the credit status of the customer, derived based on the account balance.
+          - It is conditionally derived: if `SATV0_CUSTOMER`.`C_ACCTBAL` is greater than 5000, the status is 'HIGH'; otherwise, it's 'LOW'.
+          - This column is derived using a CASE statement based on the `C_ACCTBAL` column from the `SATV0_CUSTOMER` table.
+          - It helps in assessing credit risk and tailoring financial services.
+          - Used in credit risk analysis, customer segmentation, and financial reporting.
+        keyColumnType: None
+        name: CREDIT_STATUS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: CASE WHEN "SATV0_CUSTOMER"."C_ACCTBAL" > 5000 THEN 'HIGH' ELSE 'LOW' END
+        systemColumnType: None
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          HUB_CUSTOMER: 94bf37ed-3d66-4f58-bba4-b72583e11d14
+          SATV0_CUSTOMER: f14a02d8-a570-446e-9ae2-7598f49089dc
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: TARGET
+            nodeName: HUB_CUSTOMER
+          - locationName: TARGET
+            nodeName: SATV0_CUSTOMER
+        join:
+          joinCondition: |-
+            FROM {{ ref('TARGET', 'SATV0_CUSTOMER') }} "SATV0_CUSTOMER"
+            INNER JOIN {{ ref('TARGET', 'HUB_CUSTOMER') }} "HUB_CUSTOMER"
+            ON "SATV0_CUSTOMER"."HK_CUSTOMER_H" = "HUB_CUSTOMER"."HK_CUSTOMER_H"
+            WHERE "C_MKTSEGMENT" = 'HOUSEHOLD'
+        name: STG_CUSTOMER
+        noLinkRefs: []
+  name: STG_CUSTOMER
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

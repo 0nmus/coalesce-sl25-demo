@@ -1,0 +1,96 @@
+fileVersion: 1
+id: 94bf37ed-3d66-4f58-bba4-b72583e11d14
+name: HUB_CUSTOMER
+operation:
+  config:
+    disable_hwm: true
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+  database: ""
+  deployEnabled: true
+  description: Customer data as defined by TPC-H
+  isMultisource: false
+  locationName: TARGET
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a06e20bb-9726-473d-abe1-c61563cf5391
+          stepCounter: 94bf37ed-3d66-4f58-bba4-b72583e11d14
+        config:
+          is_Hub_hk: true
+        dataType: STRING
+        description: ""
+        name: HK_CUSTOMER_H
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1e062ddc-82f4-4c92-8504-b665931d80d6
+                stepCounter: 6e0186b8-3fa1-49db-b3b6-99d526034e77
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 49cfc5e7-4cb1-4342-9d58-06ea5fc59d4d
+          stepCounter: 94bf37ed-3d66-4f58-bba4-b72583e11d14
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: C_CUSTKEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ab582140-caea-48a3-a395-e305d3327b0d
+                stepCounter: 6e0186b8-3fa1-49db-b3b6-99d526034e77
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 97d70111-d1fa-4707-b9d3-a1f70835a695
+          stepCounter: 94bf37ed-3d66-4f58-bba4-b72583e11d14
+        config: {}
+        dataType: TIMESTAMP
+        description: The Load Date Timestamp (LDTS) describes when this data first arrived in the Data Warehouse.
+        name: LDTS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8f24679c-f43f-429a-913c-e6807db120f6
+                stepCounter: 6e0186b8-3fa1-49db-b3b6-99d526034e77
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 85228ec7-3b5c-4ad5-b143-364fcdbbe5ac
+          stepCounter: 94bf37ed-3d66-4f58-bba4-b72583e11d14
+        config: {}
+        dataType: STRING
+        description: The Record Source (RSRC) describes the source of this data.
+        name: RSRC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6d0e660d-4252-43c2-9a13-2ca125eec391
+                stepCounter: 6e0186b8-3fa1-49db-b3b6-99d526034e77
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          DVSTG_CUSTOMER: 6e0186b8-3fa1-49db-b3b6-99d526034e77
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: TARGET
+            nodeName: DVSTG_CUSTOMER
+        join:
+          joinCondition: FROM {{ ref('TARGET', 'DVSTG_CUSTOMER') }} "DVSTG_CUSTOMER"
+        name: HUB_CUSTOMER
+        noLinkRefs: []
+  name: HUB_CUSTOMER
+  overrideSQL: false
+  schema: ""
+  sqlType: Data-Vault:::6
+  type: sql
+  version: 1
+type: Node
